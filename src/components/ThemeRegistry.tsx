@@ -4,23 +4,27 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ReactNode } from "react";
 
-const theme = createTheme({
-  palette: {
-    mode: "light",
-    primary: {
-      main: "#1976d2",
+function ThemeWrapper({ children }: { children: ReactNode }) {
+  const theme = createTheme({
+    palette: {
+      mode: "light",
+      primary: {
+        main: "#1976d2",
+      },
+      secondary: {
+        main: "#dc004e",
+      },
     },
-    secondary: {
-      main: "#dc004e",
-    },
-  },
-});
+  });
 
-export default function ThemeRegistry({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {children}
     </ThemeProvider>
   );
+}
+
+export default function ThemeRegistry({ children }: { children: ReactNode }) {
+  return <ThemeWrapper>{children}</ThemeWrapper>;
 }
