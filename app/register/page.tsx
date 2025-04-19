@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
 import Layout from "../components/Layout";
 
-export default function Login() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export default function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Login failed");
+        throw new Error(data.error || "Registration failed");
       }
 
       login(data.token);
@@ -43,7 +43,7 @@ export default function Login() {
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
         <div className="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-lg border border-gray-700">
           <div className="text-center">
-            <h2 className="text-3xl font-bold">Login</h2>
+            <h2 className="text-3xl font-bold">Create Account</h2>
             {error && <p className="mt-2 text-red-500">{error}</p>}
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -73,7 +73,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter your password"
+                  placeholder="Create a password"
                 />
               </div>
             </div>
@@ -81,17 +81,17 @@ export default function Login() {
               type="submit"
               className="w-full px-4 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-md transition-colors"
             >
-              Login
+              Register
             </button>
           </form>
           <div className="text-center">
             <p className="text-sm">
-              Don't have an account?{" "}
+              Already have an account?{" "}
               <a
-                href="/register"
+                href="/login"
                 className="text-purple-400 hover:text-purple-300"
               >
-                Register
+                Login
               </a>
             </p>
           </div>

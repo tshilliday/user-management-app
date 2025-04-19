@@ -1,5 +1,6 @@
+"use client";
+
 import { ReactNode } from "react";
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
@@ -17,94 +18,53 @@ const Layout = ({ children }: LayoutProps) => {
     router.push("/");
   };
 
-  const buttonStyles = {
-    background: "linear-gradient(45deg, #6B46C1 30%, #805AD5 90%)",
-    color: "#FFFFFF",
-    borderRadius: "6px",
-    padding: "8px 16px",
-    fontWeight: 500,
-    textTransform: "none",
-    "&:hover": {
-      background: "linear-gradient(45deg, #805AD5 30%, #6B46C1 90%)",
-      boxShadow: "0 0 10px rgba(107, 70, 193, 0.5)",
-    },
-  };
-
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{
-        backgroundColor: "#0A0A0A",
-        color: "#FFFFFF",
-      }}
-    >
-      <AppBar
-        position="static"
-        className="w-full"
-        sx={{
-          bgcolor: "#0A0A0A",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-          boxShadow: "none",
-        }}
-      >
-        <Toolbar className="max-w-7xl mx-auto w-full">
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexGrow: 1,
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                mr: 2,
-                cursor: "pointer",
-                "&:hover": { opacity: 0.8 },
-              }}
-              onClick={() => router.push("/")}
-            >
-              <img src="/gift-icon.svg" alt="Caddio" className="h-8 w-8 mr-2" />
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  fontWeight: 600,
-                  color: "#FFFFFF",
-                }}
+    <div className="min-h-screen flex flex-col bg-gray-900 text-white">
+      <nav className="w-full bg-gray-800 border-b border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <div
+                className="flex items-center cursor-pointer hover:opacity-80"
+                onClick={() => router.push("/")}
               >
-                Caddio
-              </Typography>
-            </Box>
-            <Box sx={{ flexGrow: 1 }} />
-            {isAuthenticated && (
-              <>
-                <Button component={Link} href="/dashboard" sx={buttonStyles}>
-                  Dashboard
-                </Button>
-                <Button onClick={handleLogout} sx={buttonStyles}>
-                  Logout
-                </Button>
-              </>
-            )}
-            {!isAuthenticated && (
-              <Button component={Link} href="/login" sx={buttonStyles}>
-                Login / register
-              </Button>
-            )}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <main
-        className="flex-grow max-w-7xl mx-auto w-full"
-        style={{
-          padding: "2rem",
-          color: "#FFFFFF",
-        }}
-      >
-        {children}
-      </main>
+                <img
+                  src="/gift-icon.svg"
+                  alt="Caddio"
+                  className="h-8 w-8 mr-2"
+                />
+                <span className="text-xl font-semibold">Caddio</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  className="px-4 py-2 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium transition-colors"
+                >
+                  Login / register
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main className="flex-grow max-w-7xl mx-auto w-full p-8">{children}</main>
     </div>
   );
 };
