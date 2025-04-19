@@ -7,8 +7,9 @@ const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const MAX_REQUESTS = 100; // 100 requests per minute
 
 export function middleware(request: NextRequest) {
-  // Get client IP
-  const ip = request.ip ?? '127.0.0.1';
+  // Get client IP from headers
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const ip = forwardedFor ? forwardedFor.split(',')[0] : '127.0.0.1';
 
   // Rate limiting
   const now = Date.now();

@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -28,10 +29,12 @@ const Layout = ({ children }: LayoutProps) => {
                 className="flex items-center cursor-pointer hover:opacity-80"
                 onClick={() => router.push("/")}
               >
-                <img
+                <Image
                   src="/gift-icon.svg"
                   alt="Caddio"
-                  className="h-8 w-8 mr-2"
+                  width={32}
+                  height={32}
+                  className="mr-2"
                 />
                 <span className="text-xl font-semibold">Caddio</span>
               </div>

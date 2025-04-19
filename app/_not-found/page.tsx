@@ -1,60 +1,24 @@
 "use client";
 
-import { Box, Typography, Button, Paper } from "@mui/material";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "calc(100vh - 200px)",
-        p: 3,
-      }}
-    >
-      <Paper
-        elevation={3}
-        sx={{
-          p: 4,
-          maxWidth: 600,
-          width: "100%",
-          textAlign: "center",
-          backgroundColor: "#1A1A1A",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-        }}
-      >
-        <Typography variant="h1" component="h1" gutterBottom>
-          404
-        </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          Page Not Found
-        </Typography>
-        <Typography color="text.secondary" paragraph>
-          The page you are looking for does not exist or has been moved.
-        </Typography>
-        <Button
-          component={Link}
-          href="/"
-          sx={{
-            background: "linear-gradient(45deg, #6B46C1 30%, #805AD5 90%)",
-            color: "#FFFFFF",
-            borderRadius: "6px",
-            padding: "8px 16px",
-            fontWeight: 500,
-            textTransform: "none",
-            mt: 2,
-            "&:hover": {
-              background: "linear-gradient(45deg, #805AD5 30%, #6B46C1 90%)",
-              boxShadow: "0 0 10px rgba(107, 70, 193, 0.5)",
-            },
-          }}
-        >
-          Go Back Home
-        </Button>
-      </Paper>
-    </Box>
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
+      <div className="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-lg border border-gray-700">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4">404</h1>
+          <p className="text-xl text-gray-300 mb-8">Page not found</p>
+        </div>
+        <div className="text-center">
+          <Link
+            href="/"
+            className="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors"
+          >
+            Go back home
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
