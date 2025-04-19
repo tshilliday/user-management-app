@@ -24,17 +24,23 @@ export default function Dashboard() {
 
     const fetchUserData = async () => {
       try {
+        console.log("Token:", token);
         const response = await fetch("/api/auth/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log("Response status:", response.status);
         if (!response.ok) {
-          throw new Error("Failed to fetch user data");
+          const errorData = await response.json();
+          console.log("Error data:", errorData);
+          throw new Error(errorData.error || "Failed to fetch user data");
         }
         const data = await response.json();
+        console.log("User data:", data);
         setUserData(data);
       } catch (err) {
+        console.error("Fetch error:", err);
         setError(err instanceof Error ? err.message : "An error occurred");
       }
     };
