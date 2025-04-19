@@ -1,9 +1,19 @@
 "use client";
 
 import { Box, Typography, Button, Paper } from "@mui/material";
-import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NotFound() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // This ensures the page is treated as a 404
+    if (typeof window !== "undefined") {
+      window.document.title = "404 - Page Not Found";
+    }
+  }, []);
+
   return (
     <Box
       sx={{
@@ -36,8 +46,7 @@ export default function NotFound() {
           The page you are looking for does not exist or has been moved.
         </Typography>
         <Button
-          component={Link}
-          href="/"
+          onClick={() => router.push("/")}
           sx={{
             background: "linear-gradient(45deg, #6B46C1 30%, #805AD5 90%)",
             color: "#FFFFFF",
