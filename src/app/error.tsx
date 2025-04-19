@@ -15,15 +15,55 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center">
-      <h1 className="text-4xl font-bold text-blue-600 mb-4">404</h1>
-      <h2 className="text-2xl mb-4">Page Not Found</h2>
-      <p className="text-gray-600 mb-8">
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        textAlign: "center",
+        padding: "2rem",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "4rem",
+          fontWeight: "bold",
+          margin: 0,
+          color: "#1976d2",
+        }}
+      >
+        404
+      </h1>
+      <h2
+        style={{
+          fontSize: "2rem",
+          margin: "1rem 0",
+          color: "#333",
+        }}
+      >
+        Page Not Found
+      </h2>
+      <p
+        style={{
+          fontSize: "1.2rem",
+          color: "#666",
+          marginBottom: "2rem",
+        }}
+      >
         The page you are looking for does not exist.
       </p>
       <Link
         href="/"
-        className="text-blue-600 border-2 border-blue-600 px-4 py-2 rounded hover:bg-blue-600 hover:text-white transition-colors"
+        style={{
+          color: "#1976d2",
+          textDecoration: "none",
+          fontSize: "1.1rem",
+          padding: "0.5rem 1rem",
+          border: "2px solid #1976d2",
+          borderRadius: "4px",
+        }}
       >
         Go back home
       </Link>
