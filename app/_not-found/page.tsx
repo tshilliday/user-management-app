@@ -1,18 +1,10 @@
 "use client";
 
 import { Box, Typography, Button, Paper } from "@mui/material";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function NotFound() {
   const router = useRouter();
-
-  useEffect(() => {
-    // This ensures the page is treated as a 404
-    if (typeof window !== "undefined") {
-      window.document.title = "404 - Page Not Found";
-    }
-  }, []);
 
   return (
     <Box
