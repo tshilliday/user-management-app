@@ -33,8 +33,9 @@ export default function NotFound() {
         <Typography color="text.secondary" paragraph>
           The page you are looking for does not exist or has been moved.
         </Typography>
-        <Link href="/" passHref>
+        <Link href="/" passHref legacyBehavior>
           <Button
+            component="a"
             sx={{
               background: "linear-gradient(45deg, #6B46C1 30%, #805AD5 90%)",
               color: "#FFFFFF",
